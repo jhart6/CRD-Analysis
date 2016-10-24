@@ -58,7 +58,7 @@ arrows(inc$avg_co2,inc$avg_diff13C+inc$se_diff13C,inc$avg_co2,inc$avg_diff13C-in
 arrows(inc$avg_co2+inc$se_co2,inc$avg_diff13C,inc$avg_co2-inc$se_co2,inc$avg_diff13C,length=0.05,angle=90,code=3,lwd=1.5)
 modCO2<-lm(inc$avg_diff13C~inc$avg_co2)
 abline(modCO2)
-
+summary(modCO2)
 
 ####Ecosystem Scale Plots####
 ###CH4 Plot###
