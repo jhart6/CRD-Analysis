@@ -9,9 +9,9 @@ resid(mlr)
 shapiro.test(resid(mlr)) #normally distributed model residuals
 
 mlr$coefficients
-
 preds<-c(predict(mlr))
-preds
 
-plot(inc$avg_diff13C,preds)
-
+quartz()
+par(mar=c(5,5,2,1))
+plot(preds,inc$avg_diff13C,pch=16,cex=1.5,xlab=expression("Observed"),ylab=expression("Modeled"))
+abline(0,1,col='red')
