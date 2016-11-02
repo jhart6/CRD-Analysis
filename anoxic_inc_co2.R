@@ -15,7 +15,7 @@ plot(anoxic$co2_prod,anoxic$avg_diff13c,ylab=ylab,xlab=xlab_inc_co2,pch=16,cex=1
 arrows(anoxic$co2_prod,anoxic$avg_diff13c+anoxic$se_diff13c,anoxic$co2_prod,anoxic$avg_diff13c-anoxic$se_diff13c,length=0.05, angle = 90,code=3,lwd=1.5)
 arrows(anoxic$co2_prod+anoxic$se_co2,anoxic$avg_diff13c,anoxic$co2_prod-anoxic$se_co2,anoxic$avg_diff13c,length=0.05,angle=90,code=3,lwd=1.5)
 mod<-lm(anoxic$avg_diff13c~anoxic$co2_prod)
-summary(mod)
+summary(mod) #not as strong an R2 as the oxic bottles - CO2 is more important in the oxic bottles (both oxidation and decomp can happen there)
 abline(mod)
 cor.test(anoxic$co2_prod,anoxic$avg_diff13c)
 shapiro.test(resid(mod)) #yes, normally distributed residuals
