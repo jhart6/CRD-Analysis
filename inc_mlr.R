@@ -15,6 +15,7 @@ summary(mlr)
 resid(mlr)
 shapiro.test(resid(mlr)) #normally distributed model residuals
 
+AIC(mlr) #11.83833
 mlr$coefficients
 preds<-c(predict(mlr))
 
@@ -24,6 +25,7 @@ summary(mlr)
 resid(mlr)
 shapiro.test(resid(mlr)) #normally distributed model residuals
 
+AIC(mlr)
 mlr$coefficients
 preds<-c(predict(mlr))
 
@@ -34,3 +36,19 @@ plot(preds,inc$avg_diff13C,pch=16,xlab=NA,ylab=NA,cex=1.5,cex.lab=1.5,cex.axis=1
 abline(0,1,lty=5,lwd=2)
 mod<-lm(inc$avg_diff13C~preds)
 summary(mod)
+
+
+####CH4 only####
+methane<-lm(inc$avg_diff13C~inc$avg_ch4)
+summary(methane)
+resid(methane)
+shapiro.test(resid(methane)) #yes, normally distributed
+AIC(methane) #15.18208
+
+####CO2 only####
+carbondioxide<-lm(inc$avg_diff13C~inc$avg_co2)
+summary(carbondioxide)
+resid(carbondioxide)
+shapiro.test(resid(carbondioxide))
+AIC(carbondioxide) #16.52395
+
