@@ -53,6 +53,10 @@ oxic<-lm(bottle$delta.del13C[which(bottle$Treatment=="oxic")]~bottle$CH4.umol.da
 summary(oxic)
 AIC(oxic) #69.03119
 
+oxic.with.pond<-lm(bottle$delta.del13C[which(bottle$Treatment=="oxic")]~bottle$Pond[which(bottle$Treatment=='oxic')]+bottle$CH4.umol.day[which(bottle$Treatment=='oxic')]+bottle$Acetate.umol.ml[which(bottle$Treatment=="oxic")]+bottle$Sulfate.umol.ml[which(bottle$Treatment=="oxic")]+bottle$Nitrate.umol.ml[which(bottle$Treatment=="oxic")])
+summary(oxic.with.pond)
+AIC(oxic.with.pond) #70.3774
+
 oxic.no.nitrate<-lm(bottle$delta.del13C[which(bottle$Treatment=="oxic")]~bottle$CH4.umol.day[which(bottle$Treatment=='oxic')]+bottle$Acetate.umol.ml[which(bottle$Treatment=="oxic")]+bottle$Sulfate.umol.ml[which(bottle$Treatment=="oxic")])
 summary(oxic.no.nitrate)
 AIC(oxic.no.nitrate) #69.26647
@@ -72,6 +76,10 @@ AIC(mod2) #37.59466
 anoxic<-lm(bottle$delta.del13C[which(bottle$Treatment=="anoxic")]~bottle$CH4.umol.day[which(bottle$Treatment=='anoxic')]+bottle$Acetate.umol.ml[which(bottle$Treatment=="anoxic")]+bottle$Sulfate.umol.ml[which(bottle$Treatment=="anoxic")]+bottle$Nitrate.umol.ml[which(bottle$Treatment=="anoxic")])
 summary(anoxic)
 AIC(anoxic) #36.91745
+
+anoxic.with.pond<-lm(bottle$delta.del13C[which(bottle$Treatment=="anoxic")]~bottle$Pond[which(bottle$Treatment=='anoxic')]+bottle$CH4.umol.day[which(bottle$Treatment=='anoxic')]+bottle$Acetate.umol.ml[which(bottle$Treatment=="anoxic")]+bottle$Sulfate.umol.ml[which(bottle$Treatment=="anoxic")]+bottle$Nitrate.umol.ml[which(bottle$Treatment=="anoxic")])
+summary(anoxic.with.pond)
+AIC(anoxic.with.pond) #31.23594
 
 anoxic.no.nitrate<-lm(bottle$delta.del13C[which(bottle$Treatment=="anoxic")]~bottle$CH4.umol.day[which(bottle$Treatment=='anoxic')]+bottle$Acetate.umol.ml[which(bottle$Treatment=="anoxic")]+bottle$Sulfate.umol.ml[which(bottle$Treatment=="anoxic")])
 summary(anoxic.no.nitrate)
