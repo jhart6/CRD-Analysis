@@ -14,6 +14,7 @@ xlab_decomp=expression("% Tensile Loss Degree" ~ Day^{-1})
 ylab=expression(Delta, " ", delta^{13}*"C")
 
 #####Incubation Scale Plot#####
+#CH4 prod VS Change in d13
 quartz()
 par(mar=c(5,5,2,1))
 plot(inc$log_ch4,inc$avg_diff13C,ylim=range(c(inc$avg_diff13C+inc$se_diff13C,inc$avg_diff13C-inc$se_diff13C)),xlim=range(c(inc$log_ch4-inc$se_log_ch4,inc$log_ch4+inc$se_log_ch4)),ylab=NA,xlab=NA,pch=16,cex=1.5,cex.lab=1.5,cex.axis=1.5,xaxt='n',yaxt='n')
@@ -28,7 +29,8 @@ Axis(side=1,at=x_axis,labels=FALSE)
 Axis(side=2,at=y_axis,labels=FALSE)
 cor.test(inc$log_ch4,inc$avg_diff13C,method='pearson')
 
-#non-logged alternative
+#non-logged CH4 (otherwise, same plot as above)
+####Figure 2####
 quartz()
 par(mar=c(5,5,2,1))
 plot(inc$avg_ch4,inc$avg_diff13C,ylim=range(c(inc$avg_diff13C+inc$se_diff13C,inc$avg_diff13C-inc$se_diff13C)),xlim=range(c(inc$avg_ch4-inc$se_ch4,inc$avg_ch4+inc$se_ch4)),ylab=NA,xlab=NA,pch=16,cex=1.5,cex.lab=1.5,cex.axis=1.5)
@@ -51,6 +53,7 @@ cor.test(inc_all$ch4_prod,inc_all$diff13C,method='pearson')
 t.test(inc_all$before,inc_all$after,paired=T)
 
 ##CO2 Bidirectional Plot##
+####Figure 3####
 quartz()
 par(mar=c(5,5,2,1))
 plot(inc$avg_co2,inc$avg_diff13C,ylim=range(c(inc$avg_diff13C+inc$se_diff13C,inc$avg_diff13C-inc$se_diff13C)),xlim=range(c(inc$avg_co2-inc$se_co2,inc$avg_co2+inc$se_co2)),ylab=NA,xlab=NA,pch=16,cex=1.5,cex.lab=1.5,cex.axis=1.5)
@@ -62,6 +65,7 @@ summary(modCO2)
 
 ####Ecosystem Scale Plots####
 ###CH4 Plot###
+####Figure 5####
 quartz()
 par(mar=c(5,5,2,1))
 plot(eco$log_ch4,eco$avg_diff13C,ylab=NA,xlab=NA,xlim=range(c(eco$log_ch4-eco$se_log_ch4,eco$log_ch4+eco$se_log_ch4)),ylim=range(c(-2,0.17)),pch=16,cex=1.5,cex.lab=1.5,cex.axis=1.5)
@@ -74,6 +78,7 @@ cor.test(eco$log_ch4,eco$avg_diff13C,method='pearson')
 
 ###DecompT Plot###
 #Decomp = % Loss per DD (calculated new way using only year long changes)
+####Figure 4####
 quartz()
 par(mar=c(5,5,2,1))
 plot(decomp$avg_loss_DD,decomp$avg_diff13C,xlab=NA,ylab=NA,xlim=range(c(decomp$avg_loss_DD-decomp$se_loss_DD,decomp$avg_loss_DD+decomp$se_loss_DD)),ylim=range(c(decomp$avg_diff13C-decomp$se_diff13C,decomp$avg_diff13C+decomp$se_diff13C)),pch=16,cex=1.5,cex.lab=1.5,cex.axis=1.5)
@@ -84,4 +89,8 @@ abline(mod2)
 summary(mod2)
 cor.test(decomp$avg_loss_DD,decomp$avg_diff13C,method='pearson')
 
-hist(resid())
+
+##Ecosystem scale Paired t-test##
+eco<-read.csv('eco_ttest.csv')
+
+t.test(eco$before,eco$after,paired=T)
